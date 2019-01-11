@@ -20,7 +20,7 @@ const sendRequest = (url, data, type = 'post') => {
     return result;
   }).catch((error) => {
     if (error) {
-      console.warn(url, error.message)
+      throw new Error(error)
     }
   })
 }

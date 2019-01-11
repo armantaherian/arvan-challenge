@@ -26,6 +26,7 @@ export const actions = {
       commit('articlesCount', r.data)
     })
   },
+  // eslint-disable-next-line
   getArticle: ({ dispatch, commit, state, rootState }, slug) => {
     return api.article.get(slug).then(r => {
       commit('getArticle', r.data)

@@ -68,7 +68,7 @@ export default {
         name: this.name,
         email: this.email,
         message: this.message,
-      }).then(r => {
+      }).then(() => {
         this.name = ''
         this.email = ''
         this.message = ''
