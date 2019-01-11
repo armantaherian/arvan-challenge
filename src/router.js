@@ -31,7 +31,7 @@ const router = new VueRouter({
     },
     {
       name: 'tag',
-      path: '/tag/:name',
+      path: '/tag/:tag',
       meta: {
         title: 'Archive: Tag',
       },
