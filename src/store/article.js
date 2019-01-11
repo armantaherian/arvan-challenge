@@ -1,6 +1,8 @@
 import api from "../api"
 
 const initialState = {
+  articles: [],
+  articlesCount: 0,
   article: {
     author: {},
     title: "",
@@ -16,6 +18,14 @@ export const state = {
 }
 
 export const actions = {
+  getArticles: ({ commit }, page) => {
+    let query = `offset=${(page-1) * 20}&limit=20`
+
+    return api.article.getAll(query).then(r => {
+      commit('getArticles', r.data)
+      commit('articlesCount', r.data)
+    })
+  },
   getArticle: ({ dispatch, commit, state, rootState }, slug) => {
     return api.article.get(slug).then(r => {
       commit('getArticle', r.data)
@@ -32,6 +42,12 @@ export const actions = {
 };
 
 export const mutations = {
+  articlesCount(state, data) {
+    state.articlesCount = data.articlesCount
+  },
+  getArticles(state, data) {
+    state.articles = data.articles
+  },
   getArticle(state, data) {
     state.article = data.article
   },
@@ -43,6 +59,7 @@ export const mutations = {
 const getters = {
   article: state => state.article,
   comments: state => state.comments,
+  articles: state => state.articles,
 }
 
 export default {

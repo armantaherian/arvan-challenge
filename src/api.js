@@ -31,6 +31,7 @@ export default {
     register: data => sendRequest('users', data),
   },
   article: {
+    getAll: (query) => sendRequest(`articles?${query}`, '', 'get'),
     get: slug => sendRequest(`articles/${slug}`, '', 'get'),
   },
   comments: {

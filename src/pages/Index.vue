@@ -3,46 +3,18 @@
     <b-container>
       <b-row>
         <b-col sm="12" md="8" class="mb-lg-5">
-          <b-row>
-            <b-col :md="6" class="mb-4">
-              <b-card
-                title="Card Title"
-                sub-title="By: Jhon Doe, Date: 22 April 2018"
-                img-src="https://picsum.photos/600/300/?image=25"
-                img-alt="Image"
-                img-top
-                tag="article"
-              >
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </b-card>
-            </b-col>
+          <PostList v-if="articlesCount" :list="articles" />
 
-            <b-col :md="6" class="mb-4">
-              <b-card
-                title="Some Card Title"
-                sub-title="By: Jhon Doe, Date: 22 April 2018"
-                img-src="https://picsum.photos/600/300/?image=25"
-                img-alt="Image"
-                img-top
-                tag="article"
-              >
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </b-card>
-            </b-col>
-
-            <b-col :md="6" class="mb-4">
-              <b-card
-                title="Some quick example text to build on the"
-                sub-title="By: Jhon Doe, Date: 22 April 2018"
-                img-src="https://picsum.photos/600/300/?image=25"
-                img-alt="Image"
-                img-top
-                tag="article"
-              >
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </b-card>
-            </b-col>
-          </b-row>
+          <div v-if="articlesCount" class="pagination mt-5 mb-5">
+            <b-pagination-nav hide-goto-end-buttons use-router
+              align="center"
+              :number-of-pages="numberOfPage"
+              base-url="?p="
+              v-model="currentPage"
+              prev-text="‹ Previous"
+              next-text="Next ›"
+            />
+          </div>
         </b-col>
 
         <b-col sm="12" md="4">
@@ -50,29 +22,50 @@
         </b-col>
       </b-row>
     </b-container>
-
-    <div class="pagination mb-5">
-      <b-pagination-nav hide-goto-end-buttons
-        align="center"
-        :number-of-pages="10"
-        base-url="#"
-        v-model="currentPage"
-        first-text=""
-        prev-text="‹ Previous"
-        next-text="Next ›"
-      />
-    </div>
   </main>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 import Sidebar from '@/components/sidebar'
+import PostList from '@/components/post/postList'
 
 export default {
   name: 'index',
   components: {
     Sidebar,
-  }
+    PostList,
+  },
+  data() {
+    return {
+      currentPage: 1
+    }
+  },
+  created() {
+    if (this.$route.query.p) {
+      this.currentPage = parseInt(this.$route.query.p);
+    }
+  },
+  mounted() {
+    this.$store.dispatch('getArticles', this.currentPage)
+  },
+  watch: {
+    currentPage: function (newCurrentPage) {
+      this.$store.dispatch('getArticles', newCurrentPage)
+    }
+  },
+  computed: {
+    numberOfPage() {
+      return this.articlesCount % 20 === 0 ? this.articlesCount / 20 : this.articlesCount / 20 + 1
+    },
+    ...mapState({
+      articlesCount: state => state.article.articlesCount,
+    }),
+    ...mapGetters([
+      'articles'
+    ]),
+  },
 }
 </script>
 
