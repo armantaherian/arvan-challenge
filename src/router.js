@@ -17,7 +17,7 @@ const router = new VueRouter({
       name: 'home',
       path: '/',
       meta: {
-        title: 'Home Page',
+        title: 'Our Blog',
       },
       component: Index,
     },
@@ -41,7 +41,7 @@ const router = new VueRouter({
       name: 'post',
       path: '/post/:id',
       meta: {
-        title: 'Post',
+        title: 'Single Blog',
       },
       component: Post,
     },

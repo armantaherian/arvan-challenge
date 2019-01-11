@@ -23,7 +23,7 @@
     </header>
 
     <div class="page-header text-center pt-1 pt-md-3 pb-2 pb-md-4">
-      <h2>Example heading</h2>
+      <h2>{{ this.$route.meta.title }}</h2>
       <p>Home - Blog</p>
     </div>
   </div>
@@ -32,7 +32,6 @@
 <script>
 export default {
   name: 'header',
-  components: {}
 }
 </script>
 
