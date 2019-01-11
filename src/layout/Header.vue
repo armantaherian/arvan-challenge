@@ -5,7 +5,7 @@
         <b-navbar toggleable="md" type="dark">
           <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-          <b-navbar-brand href="#">
+          <b-navbar-brand href="/">
             <img src="/assets/logo.png" />
           </b-navbar-brand>
 
