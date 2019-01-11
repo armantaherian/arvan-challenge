@@ -33,6 +33,7 @@ export default {
   article: {
     getAll: (query) => sendRequest(`articles?${query}`, '', 'get'),
     get: slug => sendRequest(`articles/${slug}`, '', 'get'),
+    getTags: () => sendRequest(`tags`, '', 'get'),
   },
   comments: {
     get: slug => sendRequest(`articles/${slug}/comments`, '', 'get'),

@@ -11,6 +11,8 @@ const initialState = {
     tagList: []
   },
   comments: [],
+  latestPosts: [],
+  tags: [],
 }
 
 export const state = {
@@ -40,6 +42,18 @@ export const actions = {
   addComment: (_, data) => {
     return api.comments.add(data.slug, data)
   },
+  getLatestPosts: ({ commit }) => {
+    let query = `offset=0&limit=5`
+
+    return api.article.getAll(query).then(r => {
+      commit('getLatestPosts', r.data)
+    })
+  },
+  getTags: ({ commit }) => {
+    return api.article.getTags().then(r => {
+      commit('getTags', r.data)
+    })
+  }
 };
 
 export const mutations = {
@@ -65,12 +79,20 @@ export const mutations = {
     }
     state.comments = []
   },
+  getLatestPosts(state, data) {
+    state.latestPosts = data.articles
+  },
+  getTags(state, data) {
+    state.tags = data.tags
+  },
 }
 
 const getters = {
   article: state => state.article,
   comments: state => state.comments,
   articles: state => state.articles,
+  latestPosts: state => state.latestPosts,
+  tags: state => state.tags,
 }
 
 export default {
