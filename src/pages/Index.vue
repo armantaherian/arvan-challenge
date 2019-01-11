@@ -53,6 +53,7 @@ export default {
     if (!this.articlesCount) {
       this.$store.dispatch('getArticles', {
         page: this.currentPage,
+        tag: this.$route.params.tag,
       })
     }
   },
@@ -60,10 +61,22 @@ export default {
     currentPage: function (newCurrentPage) {
       this.$store.dispatch('getArticles', {
         page: newCurrentPage,
+        tag: this.$route.params.tag,
+      })
+    },
+    currentTag: function (newTag) {
+      this.currentPage = 1
+
+      this.$store.dispatch('getArticles', {
+        page: this.currentPage,
+        tag: newTag,
       })
     }
   },
   computed: {
+    currentTag() {
+      return this.$route.params.tag
+    },
     numberOfPage() {
       return this.articlesCount % 20 === 0 ? this.articlesCount / 20 : this.articlesCount / 20 + 1
     },

@@ -5,7 +5,6 @@ import Index from '@/pages/Index.vue'
 import Post from '@/pages/Post.vue'
 import Page from '@/pages/Page.vue'
 // import ErrorPage from '@/pages/Error.vue'
-import Archive from '@/pages/Archive.vue'
 
 Vue.use(VueRouter)
 
@@ -27,7 +26,7 @@ const router = new VueRouter({
       meta: {
         title: 'Archive: Author',
       },
-      component: Archive,
+      component: Index,
     },
     {
       name: 'tag',
@@ -35,7 +34,7 @@ const router = new VueRouter({
       meta: {
         title: 'Archive: Tag',
       },
-      component: Archive,
+      component: Index,
     },
     {
       name: 'post',
