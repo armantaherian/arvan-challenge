@@ -5,14 +5,13 @@
         type="text"
         class="search-input"
         placeholder="Search…"
-        v-model="search"
-      >
+      > <!-- v-model="search" -->
       </b-form-input>
     </div>
 
     <div class="widget mb-5 mr-0 mr-lg-5">
       <h5 class="mb-3">Categories</h5>
-      
+
       <b-list-group flush>
         <b-list-group-item href="#">This is a default list group item</b-list-group-item>
         <b-list-group-item href="#">This is a primary list group item</b-list-group-item>
