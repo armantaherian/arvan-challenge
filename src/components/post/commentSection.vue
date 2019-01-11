@@ -1,6 +1,6 @@
 <template>
   <section class="comments">
-    <h4 class="mb-4">{{ comments.length || "No" }} {{ commentTitle }}</h4>
+    <h4 v-if="comments.length" class="mb-4">{{ comments.length || "No" }} {{ commentTitle }}</h4>
 
     <CommentList :list="comments" />
 
