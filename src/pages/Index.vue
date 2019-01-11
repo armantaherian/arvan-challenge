@@ -3,6 +3,8 @@
     <b-container>
       <b-row>
         <b-col sm="12" md="8" class="mb-lg-5">
+          <p v-if="!articlesCount">Loading…</p>
+
           <PostList v-if="articlesCount" :list="articles" />
 
           <div v-if="articlesCount" class="pagination mt-5 mb-5">
@@ -48,7 +50,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('getArticles', this.currentPage)
+    if (!this.articlesCount) {
+      this.$store.dispatch('getArticles', this.currentPage)
+    }
   },
   watch: {
     currentPage: function (newCurrentPage) {

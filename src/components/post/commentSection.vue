@@ -1,8 +1,12 @@
 <template>
   <section class="comments">
-    <h4 v-if="comments.length" class="mb-4">{{ comments.length || "No" }} {{ commentTitle }}</h4>
+    <transition name="fade" mode="out-in">
+      <h4 v-if="comments.length" class="mb-4">{{ comments.length || "No" }} {{ commentTitle }}</h4>
+    </transition>
 
-    <CommentList :list="comments" />
+    <transition name="fade" mode="out-in">
+      <CommentList :list="comments" />
+    </transition>
 
     <AddComment :slug="slug" />
   </section>

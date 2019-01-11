@@ -54,6 +54,16 @@ export const mutations = {
   getComment(state, data) {
     state.comments = data.comments
   },
+  destroyArticle(state) {
+    state.article = {
+      author: {},
+      title: "",
+      description: "",
+      body: "",
+      tagList: []
+    }
+    state.comments = []
+  },
 }
 
 const getters = {

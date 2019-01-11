@@ -29,3 +29,14 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  .card {
+    transition: box-shadow .25s ease-out;
+    box-shadow: 0 0 35px 4px rgba(219, 219, 219, .6);
+
+    &:hover {
+      box-shadow: 0 0 40px 1px rgba(219, 219, 219, .9);
+    }
+  }
+</style>
