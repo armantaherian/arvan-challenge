@@ -1,5 +1,5 @@
 <template>
-  <aside  class="sidebar">
+  <aside class="sidebar mb-5">
     <div class="widget mb-5 mr-0 mr-lg-5">
       <b-form-input
         type="text"
