@@ -27,7 +27,9 @@
                   <div><strong>Tags:</strong></div>
 
                   <ul class="no-style-list list-inline">
-                    <li v-for="tag in article.tagList" :key="tag"><a href="#">{{ tag }}</a></li>
+                    <li v-for="tag in article.tagList" :key="tag">
+                      <router-link tag="a" :to="`/tag/${tag}`">{{ tag }}</router-link>
+                    </li>
                   </ul>
                 </div>
               </footer>
@@ -70,9 +72,18 @@ export default {
     Comment,
   },
   created() {
-    this.getArticle(this.$route.params.id)
+    this.getArticle(this.currentPostId)
+  },
+  watch: {
+    currentPostId: function(newValue) {
+      this.$store.commit('destroyArticle')
+      this.getArticle(newValue)
+    }
   },
   computed: {
+    currentPostId() {
+      return this.$route.params.id
+    },
     loaded() {
       return this.article.slug
     },

@@ -51,12 +51,16 @@ export default {
   },
   mounted() {
     if (!this.articlesCount) {
-      this.$store.dispatch('getArticles', this.currentPage)
+      this.$store.dispatch('getArticles', {
+        page: this.currentPage,
+      })
     }
   },
   watch: {
     currentPage: function (newCurrentPage) {
-      this.$store.dispatch('getArticles', newCurrentPage)
+      this.$store.dispatch('getArticles', {
+        page: newCurrentPage,
+      })
     }
   },
   computed: {

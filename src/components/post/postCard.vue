@@ -1,12 +1,12 @@
 <template>
   <article class="card">
-    <router-link tag="a" :to="`post/${article.slug}`">
+    <router-link tag="a" :to="`/post/${article.slug}`">
       <img :src="`https://picsum.photos/600/300/?image=${parseInt(Math.random() * 100)}`" alt="Image" class="card-img-top">
     </router-link>
 
     <div class="card-body">
       <h4 class="card-title">
-        <router-link tag="a" :to="`post/${article.slug}`">
+        <router-link tag="a" :to="`/post/${article.slug}`">
           {{ article.title }}
         </router-link>
       </h4>

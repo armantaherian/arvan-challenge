@@ -20,8 +20,12 @@ export const state = {
 }
 
 export const actions = {
-  getArticles: ({ commit }, page) => {
-    let query = `offset=${(page-1) * 20}&limit=20`
+  getArticles: ({ commit }, params) => {
+    let query = `offset=${(params.page-1) * 20}&limit=20`
+
+    if (params.tag) {
+      query += `&tag=${params.tag}`
+    }
 
     return api.article.getAll(query).then(r => {
       commit('getArticles', r.data)
